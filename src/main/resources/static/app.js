@@ -13,7 +13,7 @@ var app = (function () {
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
         ctx.beginPath();
-        ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
+        ctx.arc(point.x, point.y, 1, 0, 2 * Math.PI);
         ctx.stroke();
     };
 
@@ -38,7 +38,7 @@ var app = (function () {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/newpoint', function (eventbody) {
                 var point = JSON.parse(eventbody.body);
-                alert("Point: " + point.x + ", " + point.y);
+                addPointToCanvas(point);
 
             });
         });
@@ -50,7 +50,11 @@ var app = (function () {
     return {
 
         init: function () {
-            var can = document.getElementById("canvas");
+            var can = $("#canvas")[0];
+            var self = this;
+            can.addEventListener("pointerdown", function(event) {
+                self.publishPoint(event.offsetX, event.offsetY);
+            });
 
             //websocket connection
             connectAndSubscribe();
@@ -59,7 +63,6 @@ var app = (function () {
         publishPoint: function (px, py) {
             var pt = new Point(px, py);
             console.info("publishing point at " + pt);
-            addPointToCanvas(pt);
             stompClient.send("/topic/newpoint", {}, JSON.stringify(pt));
             //publicar el evento
         },
