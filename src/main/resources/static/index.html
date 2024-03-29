@@ -30,6 +30,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
     <body onload="app.init()">
+        <label for="drawing">Identificador del dibujo:</label>
+        <input id="drawing" type="number"/>
+        <button onclick="app.connect($('#drawing').val())">Conectarse</button>
         X:<input id="x" type="number"/>
         Y:<input id="y" type="number"/>        
         <button onclick="app.publishPoint($('#x').val(), $('#y').val())">Send point</button>
