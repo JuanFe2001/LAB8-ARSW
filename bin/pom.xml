@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.eci.arsw.msgbroker</groupId>
-        <artifactId>LAB8-ARSW</artifactId>
+    <artifactId>websockets-msbroker-example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>LAB8-ARSW</name>
+    <name>websockets-msbroker-example</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -41,7 +41,6 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator</artifactId>
-            <version>0.47</version>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
